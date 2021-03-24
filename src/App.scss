@@ -11,13 +11,12 @@ h1 {
 
 table {
   border-collapse: collapse;
-  margin: 0 auto;
+  margin: 0 10%;
 }
 .table-nav {
   margin: 1rem auto;
   & input,
-  select,
-  button {
+  select {
     padding: 1rem;
     font-size: 1rem;
   }
@@ -27,22 +26,53 @@ table {
   width: 80%;
   background-color: yellow;
   & th {
+    width: 20%;
     border: 1px solid black;
-    padding: 0.5rem;
+    & select {
+      background-color: red;
+      padding: 0.5rem;
+      width: 100%;
+    }
   }
 }
 
 .table-list {
+  table-layout: fixed;
+  word-wrap: break-word;
   width: 80%;
   position: relative;
-  border-collapse: collapse;
-  text-align: center;
-  vertical-align: center;
   border: 1px solid black;
   & td {
+    position: relative;
+    border: 1px solid red;
     padding: 1rem;
     width: 25%;
     text-align: center;
     vertical-align: center;
   }
+}
+
+.misc_absolute-delete {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: scale(1.5) translateY(-25%);
+}
+
+.edit_table-body {
+  width: 80%;
+  table-layout: fixed;
+  background-color: blueviolet;
+  word-wrap: break-word;
+  & td {
+    border: 1px solid red;
+    padding: 1rem;
+    width: 20%;
+    text-align: center;
+    vertical-align: center;
+  }
+}
+
+.table-nav-input {
+  background-color: red;
 }

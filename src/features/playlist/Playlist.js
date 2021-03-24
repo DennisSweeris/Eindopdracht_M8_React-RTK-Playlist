@@ -1,37 +1,79 @@
 import React, { Fragment, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addSong, removeSong } from "./playlistSlice";
 import { current } from "@reduxjs/toolkit";
+import { useSelector, useDispatch } from "react-redux";
+import { addSong, removeSong, editSong, updateSong, cancelEdit, sortSongs } from "./playlistSlice";
 import { MdDeleteForever } from "react-icons/md";
 
+// document.addEventListener("click", e => console.log(e.target)); // DOM HELPER
 function Playlist() {
   const dispatch = useDispatch();
-  const [newSong, setNewSong] = useState("Unknown");
+  const { songs } = useSelector(state => state);
+  const [newTitle, setNewTitle] = useState("Unknown");
   const [newArtist, setNewArtist] = useState("Unknown");
   const [newGenre, setNewGenre] = useState("Rock");
   const [newRating, setNewRating] = useState("★");
-  const { songs } = useSelector(state => state);
+  // console.log(songs);
 
+  const [currentTitle, setCurrentTitle] = useState("");
+  const [currentArtist, setCurrentArtist] = useState();
+  const [currentGenre, setCurrentGenre] = useState();
+  const [currentRating, setCurrentRating] = useState();
   const addNewSong = e => {
     e.preventDefault();
+    const [title, artist] = e.target;
     const addedSong = {
-      title: newSong,
+      title: newTitle,
       artist: newArtist,
       genre: newGenre,
       rating: newRating,
+      editing: false,
     };
-    dispatch(addSong(addedSong));
-    //   if (addedSong.title) {
-    //     dispatch(addSong(addedSong));
-    //     // setNewSong("");
-    //     // setNewArtist("");
-    //     // setNewGenre("");
-    //     // setNewRating("");
-    //   }
+
+    if (title.value === "" && artist.value === "") {
+      title.className = "table-nav-input";
+      artist.className = "table-nav-input";
+    } else {
+      dispatch(addSong(addedSong));
+      title.value = "";
+      artist.value = "";
+      title.className = "";
+      artist.className = "";
+    }
   };
 
   const remove = i => {
     dispatch(removeSong(i));
+    setNewTitle("Unknown");
+    setNewArtist("Unknown");
+  };
+
+  const edit = (e, i) => {
+    dispatch(editSong(i));
+    setCurrentTitle(e.target);
+    setCurrentArtist(e.target);
+  };
+
+  const cancel = i => {
+    dispatch(cancelEdit(i));
+  };
+
+  const update = i => {
+    dispatch(updateSong(currentTitle, currentArtist, i));
+    setCurrentTitle("");
+    setCurrentArtist("");
+    // setCurrentGenre();
+    // setCurrentRating();
+  };
+
+  const sort = e => {
+    // const sortArray = songs;
+    dispatch(sortSongs(songs));
+    // sortArray.sort((a, b) => {
+    //   if (a < b) {
+    //     return sortArray.sort();
+    //   }
+    // });
+    // console.log(sortArray);
   };
 
   return (
@@ -42,7 +84,11 @@ function Playlist() {
           <tbody>
             <tr>
               <td>
-                <input type="text" placeholder="Title" onChange={e => setNewSong(e.target.value)} />
+                <input
+                  type="text"
+                  placeholder="Title"
+                  onChange={e => setNewTitle(e.target.value)}
+                />
               </td>
               <td>
                 <input
@@ -69,18 +115,30 @@ function Playlist() {
                 </select>
               </td>
               <td>
-                <button value="Add Song">Add</button>
+                <input value="Add Song" type="submit" />
               </td>
             </tr>
           </tbody>
         </table>
       </form>
 
+      {/* <SongSort /> */}
       <table className="table-header">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Artist</th>
+            <th
+              onClick={e => {
+                dispatch(sort(e));
+              }}>
+              Title
+            </th>
+
+            <th
+              onClick={e => {
+                dispatch(sort(e));
+              }}>
+              Artist
+            </th>
             <th>Genre</th>
             <th>Rating</th>
           </tr>
@@ -88,26 +146,79 @@ function Playlist() {
       </table>
       {songs.map((song, i) => {
         return (
-          <div key={song.title}>
+          <Fragment key={song.title}>
             <table className="table-list">
-              <tbody>
-                <tr>
-                  <td>{song.title}</td>
-                  <td>{song.artist}</td>
-                  <td>{song.genre}</td>
-                  <td>{song.rating}</td>
-                  <td onClick={() => remove(i)}>
-                    <MdDeleteForever />
-                  </td>
-                </tr>
-              </tbody>
+              {!song.editing ? (
+                <tbody>
+                  <tr>
+                    <td onClick={e => edit(e.target, i)}>{song.title}</td>
+                    <td onClick={e => edit(e.target, i)}>{song.artist}</td>
+                    <td>{song.genre}</td>
+                    <td>{song.rating}</td>
+
+                    <span className="misc_absolute-delete" onClick={() => remove(i)}>
+                      <MdDeleteForever />
+                    </span>
+                  </tr>
+                </tbody>
+              ) : (
+                <table className="edit_table-body" s>
+                  <tbody>
+                    <tr>
+                      <td className="edit_table-title">
+                        <input
+                          type="text"
+                          value={currentTitle}
+                          onChange={e => setCurrentTitle(e.target.value)}
+                        />
+                      </td>
+                      <td className="edit_table-artist">
+                        <input
+                          type="text"
+                          value={currentArtist}
+                          onChange={e => setCurrentArtist(e.target.value)}
+                        />
+                      </td>
+                      {/*                   
+                    <td>
+                      <select
+                        className="genre"
+                        value={currentGenre}
+                        onChange={e => setNewGenre(e.target.value)}>
+                        <option value="Rock">Rock</option>
+                        <option value="Reggae">Reggae</option>
+                        <option value="Klassiek">Klassiek</option>
+                        <option value="Hiphop">Hip/Hop/Rap</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="rating"
+                        value={currentRating}
+                        onChange={e => setNewRating(e.target.value)}>
+                        <option value="★">★</option>
+                        <option value="★★">★★</option>
+                        <option value="★★★">★★★</option>
+                        <option value="★★★★">★★★★</option>
+                        <option value="★★★★★">★★★★★</option>
+                      </select>
+                    </td> */}
+                      <td>
+                        <button onClick={() => cancel(i)}>Cancel</button>
+                      </td>
+                      <td>
+                        <button onClick={() => update(i)}>Update</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              )}
             </table>
-          </div>
+          </Fragment>
         );
       })}
     </Fragment>
   );
 }
-// style={{ width: "20%" }}
 
 export default Playlist;
