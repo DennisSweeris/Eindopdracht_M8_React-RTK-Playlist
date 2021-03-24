@@ -1,10 +1,20 @@
 import React, { Fragment, useState } from "react";
 import { current } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
-import { addSong, removeSong, editSong, updateSong, cancelEdit, sortSongs } from "./playlistSlice";
+import {
+  addSong,
+  removeSong,
+  editSong,
+  updateSong,
+  cancelEdit,
+  sortSongsByTitle,
+  sortSongsByArtist,
+  sortSongsByGenre,
+  sortSongsByRating,
+} from "./playlistSlice";
 import { MdDeleteForever } from "react-icons/md";
 
-// document.addEventListener("click", e => console.log(e.target)); // DOM HELPER
+document.addEventListener("click", e => console.log(e.target)); // DOM HELPER
 function Playlist() {
   const dispatch = useDispatch();
   const { songs } = useSelector(state => state);
@@ -59,21 +69,14 @@ function Playlist() {
 
   const update = i => {
     dispatch(updateSong(currentTitle, currentArtist, i));
-    setCurrentTitle("");
-    setCurrentArtist("");
+    // setCurrentTitle("");
+    // setCurrentArtist("");
     // setCurrentGenre();
     // setCurrentRating();
   };
 
   const sort = e => {
-    // const sortArray = songs;
-    dispatch(sortSongs(songs));
-    // sortArray.sort((a, b) => {
-    //   if (a < b) {
-    //     return sortArray.sort();
-    //   }
-    // });
-    // console.log(sortArray);
+    // dispatch(sortSongsByTitle(songs));
   };
 
   return (
@@ -121,26 +124,13 @@ function Playlist() {
           </tbody>
         </table>
       </form>
-
-      {/* <SongSort /> */}
       <table className="table-header">
         <thead>
           <tr>
-            <th
-              onClick={e => {
-                dispatch(sort(e));
-              }}>
-              Title
-            </th>
-
-            <th
-              onClick={e => {
-                dispatch(sort(e));
-              }}>
-              Artist
-            </th>
-            <th>Genre</th>
-            <th>Rating</th>
+            <th onClick={() => dispatch(sortSongsByTitle(songs))}>Title</th>
+            <th onClick={() => dispatch(sortSongsByArtist(songs))}>Artist</th>
+            <th onClick={() => dispatch(sortSongsByGenre(songs))}>Genre</th>
+            <th onClick={() => dispatch(sortSongsByRating(songs))}>Rating</th>
           </tr>
         </thead>
       </table>

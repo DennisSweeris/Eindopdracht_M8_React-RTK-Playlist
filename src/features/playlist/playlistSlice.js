@@ -17,6 +17,7 @@ const playlistSlice = createSlice({
   reducers: {
     addSong: (state, action) => {
       state.push(action.payload);
+      console.log(current(state));
     },
 
     removeSong: (state, action) => {
@@ -32,8 +33,8 @@ const playlistSlice = createSlice({
         const song = state[index];
         song.title = title;
         song.artist = artist;
-        // song.genre = genre;
-        // song.rating = rating;
+        song.genre = genre;
+        song.rating = rating;
         song.editing = false;
       },
       prepare(title, artist, index) {
@@ -44,10 +45,31 @@ const playlistSlice = createSlice({
       const song = state[action.payload];
       song.editing = false;
     },
-    sortSongs: (state, action) => {
-      state.sort((a, b) => {
+    sortSongsByTitle: state => {
+      state.sort().reverse((a, b) => {
         if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
         if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+        return 0;
+      });
+    },
+    sortSongsByArtist: state => {
+      state.sort().reverse((a, b) => {
+        if (a.artist.toLowerCase() < b.artist.toLowerCase()) return -1;
+        if (a.artist.toLowerCase() > b.artist.toLowerCase()) return 1;
+        return 0;
+      });
+    },
+    sortSongsByGenre: state => {
+      state.sort().reverse((a, b) => {
+        if (a.genre.toLowerCase() < b.genre.toLowerCase()) return -1;
+        if (a.genre.toLowerCase() > b.genre.toLowerCase()) return 1;
+        return 0;
+      });
+    },
+    sortSongsByRating: state => {
+      state.sort().reverse((a, b) => {
+        if (a.rating.toLowerCase() < b.rating.toLowerCase()) return -1;
+        if (a.rating.toLowerCase() > b.rating.toLowerCase()) return 1;
         return 0;
       });
     },
@@ -59,6 +81,9 @@ export const {
   editSong,
   updateSong,
   cancelEdit,
-  sortSongs,
+  sortSongsByTitle,
+  sortSongsByArtist,
+  sortSongsByGenre,
+  sortSongsByRating,
 } = playlistSlice.actions;
 export default playlistSlice.reducer;
