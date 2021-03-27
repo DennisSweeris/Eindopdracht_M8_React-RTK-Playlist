@@ -11,10 +11,11 @@ import {
   sortSongsByArtist,
   sortSongsByGenre,
   sortSongsByRating,
+  sortSongsBy,
 } from "./playlistSlice";
 import { MdDeleteForever } from "react-icons/md";
 
-document.addEventListener("click", e => console.log(e.target)); // DOM HELPER
+// document.addEventListener("click", e => console.log(e.target)); // DOM HELPER
 function Playlist() {
   const dispatch = useDispatch();
   const { songs } = useSelector(state => state);
@@ -22,15 +23,18 @@ function Playlist() {
   const [newArtist, setNewArtist] = useState("Unknown");
   const [newGenre, setNewGenre] = useState("Rock");
   const [newRating, setNewRating] = useState("★");
-  // console.log(songs);
 
   const [currentTitle, setCurrentTitle] = useState("");
-  const [currentArtist, setCurrentArtist] = useState();
-  const [currentGenre, setCurrentGenre] = useState();
-  const [currentRating, setCurrentRating] = useState();
+  const [currentArtist, setCurrentArtist] = useState("");
+  const [currentGenre, setCurrentGenre] = useState("");
+  const [currentRating, setCurrentRating] = useState("");
+
+  // const [sortConfig, setSortConfig] = useState(null);
+  // const [sortedField, setSortedField] = useState(null);
+
   const addNewSong = e => {
     e.preventDefault();
-    const [title, artist] = e.target;
+    const [title, artist, genre, rating] = e.target;
     const addedSong = {
       title: newTitle,
       artist: newArtist,
@@ -68,7 +72,7 @@ function Playlist() {
   };
 
   const update = i => {
-    dispatch(updateSong(currentTitle, currentArtist, i));
+    dispatch(updateSong(currentTitle, currentArtist, currentGenre, currentRating, i));
     // setCurrentTitle("");
     // setCurrentArtist("");
     // setCurrentGenre();
@@ -76,7 +80,20 @@ function Playlist() {
   };
 
   const sort = e => {
-    // dispatch(sortSongsByTitle(songs));
+    if (e.target.parentNode.innerText === "Title") {
+      dispatch(sortSongsByTitle(e.target.value));
+    }
+    if (e.target.parentNode.innerText === "Artist") {
+      dispatch(sortSongsByArtist(e.target.value));
+    }
+    if (e.target.parentNode.innerText === "Genre") {
+      console.log("GENRE");
+      console.log(e.target.value);
+      dispatch(sortSongsByGenre(e.target.value));
+    }
+    if (e.target.parentNode.innerText === "Rating") {
+      dispatch(sortSongsByRating(e.target.value));
+    }
   };
 
   return (
@@ -87,18 +104,10 @@ function Playlist() {
           <tbody>
             <tr>
               <td>
-                <input
-                  type="text"
-                  placeholder="Title"
-                  onChange={e => setNewTitle(e.target.value)}
-                />
+                <input type="text" placeholder="Title" onChange={e => setNewTitle(e.target.value)} />
               </td>
               <td>
-                <input
-                  type="text"
-                  placeholder="Artist"
-                  onChange={e => setNewArtist(e.target.value)}
-                />
+                <input type="text" placeholder="Artist" onChange={e => setNewArtist(e.target.value)} />
               </td>
               <td>
                 <select className="genre" onChange={e => setNewGenre(e.target.value)}>
@@ -106,6 +115,8 @@ function Playlist() {
                   <option value="Reggae">Reggae</option>
                   <option value="Klassiek">Klassiek</option>
                   <option value="Hiphop">Hip/Hop/Rap</option>
+                  <option value="Metal">Metal</option>
+                  <option value="Nederlandstalig">Nederlandstalig</option>
                 </select>
               </td>
               <td>
@@ -127,10 +138,35 @@ function Playlist() {
       <table className="table-header">
         <thead>
           <tr>
-            <th onClick={() => dispatch(sortSongsByTitle(songs))}>Title</th>
-            <th onClick={() => dispatch(sortSongsByArtist(songs))}>Artist</th>
-            <th onClick={() => dispatch(sortSongsByGenre(songs))}>Genre</th>
-            <th onClick={() => dispatch(sortSongsByRating(songs))}>Rating</th>
+            <th>
+              <div>
+                <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
+                <span>Title</span>
+                <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
+              </div>
+            </th>
+            <th>
+              <div>
+                <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
+                <span>Artist</span>
+                <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
+              </div>
+            </th>
+
+            <th>
+              <div>
+                <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
+                <span>Genre</span>
+                <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
+              </div>
+            </th>
+            <th>
+              <div>
+                <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
+                <span>Rating</span>
+                <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
+              </div>
+            </th>
           </tr>
         </thead>
       </table>

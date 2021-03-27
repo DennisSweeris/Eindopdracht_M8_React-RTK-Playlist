@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+// Scrollbar
+body::-webkit-scrollbar {
+  width: 2.25rem;
+  &-track {
+    background: black;
+  }
+  &-thumb {
+    background: purple;
+  }
+}
+
 h1 {
   margin-top: 1rem;
   text-align: center;
@@ -32,6 +43,31 @@ table {
       background-color: red;
       padding: 0.5rem;
       width: 100%;
+    }
+    & span {
+      padding: 0 2rem;
+    }
+
+    & div {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      & button {
+        border: none;
+        outline: none;
+      }
+      & > :nth-child(1) {
+        background: none;
+        &::before {
+          content: "\25BC";
+        }
+      }
+      & > :nth-child(3) {
+        background: none;
+        &::after {
+          content: "\25B2";
+        }
+      }
     }
   }
 }

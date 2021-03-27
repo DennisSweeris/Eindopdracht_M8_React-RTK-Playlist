@@ -1,23 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { current } from "@reduxjs/toolkit";
 
+const songsArray = [
+  { title: "Imagine", artist: "John Lennon", genre: "Pop", rating: "★★★★", editing: false },
+  { title: "Hellfire", artist: "Jonathan Young", genre: "Metal", rating: "★★★★★", editing: false },
+  {
+    title: "Kleine Oneindigheid",
+    artist: "Marco Borsato",
+    genre: "Nederlandstalig",
+    rating: "★★★",
+    editing: false,
+  },
+  { title: "Sound of Silence", artist: "Disturbed", genre: "Metal", rating: "★★", editing: false },
+];
+
 const playlistSlice = createSlice({
   name: "songs",
-  initialState: [
-    { title: "Imagine", artist: "John Lennon", genre: "Pop", rating: "★★★★★", editing: false },
-    {
-      title: "Hellfire",
-      artist: "Jonathan Young",
-      genre: "Metal",
-      rating: "★★★★★",
-      editing: false,
-    },
-  ],
+  initialState: songsArray,
 
   reducers: {
     addSong: (state, action) => {
       state.push(action.payload);
-      console.log(current(state));
     },
 
     removeSong: (state, action) => {
@@ -45,33 +48,36 @@ const playlistSlice = createSlice({
       const song = state[action.payload];
       song.editing = false;
     },
-    sortSongsByTitle: state => {
-      state.sort().reverse((a, b) => {
-        if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
-        if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
-        return 0;
-      });
+
+    // console.log(current(state)); // Logs current state - readable
+    // console.log(action); // Logs current action
+    // TODO - Figure out how to refactor into a single dynamic function
+    sortSongsByTitle: (state, action) => {
+      console.log(action);
+      action.payload === "ascending"
+        ? state.sort((a, b) => a.title.localeCompare(b.title))
+        : state.sort((b, a) => a.title.localeCompare(b.title));
+      return state;
     },
-    sortSongsByArtist: state => {
-      state.sort().reverse((a, b) => {
-        if (a.artist.toLowerCase() < b.artist.toLowerCase()) return -1;
-        if (a.artist.toLowerCase() > b.artist.toLowerCase()) return 1;
-        return 0;
-      });
+
+    sortSongsByArtist: (state, action) => {
+      action.payload === "ascending"
+        ? state.sort((a, b) => a.artist.localeCompare(b.artist))
+        : state.sort((b, a) => a.artist.localeCompare(b.artist));
+      return state;
     },
-    sortSongsByGenre: state => {
-      state.sort().reverse((a, b) => {
-        if (a.genre.toLowerCase() < b.genre.toLowerCase()) return -1;
-        if (a.genre.toLowerCase() > b.genre.toLowerCase()) return 1;
-        return 0;
-      });
+
+    sortSongsByGenre: (state, action) => {
+      action.payload === "ascending"
+        ? state.sort((a, b) => a.genre.localeCompare(b.genre))
+        : state.sort((b, a) => a.genre.localeCompare(b.genre));
+      return state;
     },
-    sortSongsByRating: state => {
-      state.sort().reverse((a, b) => {
-        if (a.rating.toLowerCase() < b.rating.toLowerCase()) return -1;
-        if (a.rating.toLowerCase() > b.rating.toLowerCase()) return 1;
-        return 0;
-      });
+    sortSongsByRating: (state, action) => {
+      action.payload === "ascending"
+        ? state.sort((a, b) => a.rating.localeCompare(b.rating))
+        : state.sort((b, a) => a.rating.localeCompare(b.rating));
+      return state;
     },
   },
 });
@@ -85,5 +91,6 @@ export const {
   sortSongsByArtist,
   sortSongsByGenre,
   sortSongsByRating,
+  sortSongsBy,
 } = playlistSlice.actions;
 export default playlistSlice.reducer;

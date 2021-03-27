@@ -1,7 +1,18 @@
+@charset "UTF-8";
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+  width: 2.25rem;
+}
+body::-webkit-scrollbar-track {
+  background: black;
+}
+body::-webkit-scrollbar-thumb {
+  background: purple;
 }
 
 h1 {
@@ -35,6 +46,30 @@ table {
   background-color: red;
   padding: 0.5rem;
   width: 100%;
+}
+.table-header th span {
+  padding: 0 2rem;
+}
+.table-header th div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.table-header th div button {
+  border: none;
+  outline: none;
+}
+.table-header th div > :nth-child(1) {
+  background: none;
+}
+.table-header th div > :nth-child(1)::before {
+  content: "▼";
+}
+.table-header th div > :nth-child(3) {
+  background: none;
+}
+.table-header th div > :nth-child(3)::after {
+  content: "▲";
 }
 
 .table-list {
