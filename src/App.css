@@ -22,7 +22,6 @@ h1 {
 
 table {
   border-collapse: collapse;
-  margin: 0 10%;
 }
 
 .table-nav {
@@ -35,7 +34,7 @@ table {
 }
 
 .table-header {
-  width: 80%;
+  width: 100%;
   background-color: yellow;
 }
 .table-header th {
@@ -75,9 +74,7 @@ table {
 .table-list {
   table-layout: fixed;
   word-wrap: break-word;
-  width: 80%;
   position: relative;
-  border: 1px solid black;
 }
 .table-list td {
   position: relative;
@@ -96,19 +93,27 @@ table {
 }
 
 .edit_table-body {
-  width: 80%;
+  width: 100%;
   table-layout: fixed;
-  background-color: blueviolet;
   word-wrap: break-word;
 }
-.edit_table-body td {
-  border: 1px solid red;
-  padding: 1rem;
-  width: 20%;
-  text-align: center;
-  vertical-align: center;
+.edit_table-body tr {
+  display: flex;
 }
-
-.table-nav-input {
-  background-color: red;
+.edit_table-body tr > :nth-child(1),
+.edit_table-body tr :nth-child(2),
+.edit_table-body tr :nth-child(3),
+.edit_table-body tr :nth-child(4) {
+  background: red;
+  width: 22.5%;
+}
+.edit_table-body tr > :nth-child(5),
+.edit_table-body tr :nth-child(6) {
+  background: green;
+  width: 5%;
+}
+.edit_table-body td {
+  position: relative;
+  padding: 1rem;
+  text-align: center;
 }/*# sourceMappingURL=App.css.map */
