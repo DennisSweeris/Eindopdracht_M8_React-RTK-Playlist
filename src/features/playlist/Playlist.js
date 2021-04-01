@@ -14,6 +14,7 @@ import {
   sortSongsBy,
 } from "./playlistSlice";
 import { MdDeleteForever } from "react-icons/md";
+import { GoArrowDown, GoArrowUp } from "react-icons/go";
 
 // document.addEventListener("click", e => console.log(e.target)); // DOM HELPER
 function Playlist() {
@@ -65,6 +66,8 @@ function Playlist() {
     dispatch(editSong(i));
     setCurrentTitle(e.target);
     setCurrentArtist(e.target);
+    setCurrentGenre(e.target);
+    setCurrentRating(e.target);
   };
 
   const cancel = i => {
@@ -73,10 +76,6 @@ function Playlist() {
 
   const update = i => {
     dispatch(updateSong(currentTitle, currentArtist, currentGenre, currentRating, i));
-    // setCurrentTitle("");
-    // setCurrentArtist("");
-    // setCurrentGenre();
-    // setCurrentRating();
   };
 
   const sort = e => {
@@ -104,10 +103,10 @@ function Playlist() {
           <tbody>
             <tr>
               <td>
-                <input type="text" placeholder="Title" onChange={e => setNewTitle(e.target.value)} />
+                <input type="text" placeholder="Title" onChange={e => setNewTitle(e.target.value)} required/>
               </td>
               <td>
-                <input type="text" placeholder="Artist" onChange={e => setNewArtist(e.target.value)} />
+                <input type="text" placeholder="Artist" onChange={e => setNewArtist(e.target.value)} required/>
               </td>
               <td>
                 <select className="genre" onChange={e => setNewGenre(e.target.value)}>
@@ -139,7 +138,7 @@ function Playlist() {
         <thead>
           <tr>
             <th>
-              <div>
+              <div>             
                 <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
                 <span>Title</span>
                 <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
@@ -188,7 +187,7 @@ function Playlist() {
                   </tr>
                 </tbody>
               ) : (
-                <table className="edit_table-body" s>
+                <table className="edit_table-body">
                   <tbody>
                     <tr>
                       <td className="edit_table-title">
@@ -204,6 +203,7 @@ function Playlist() {
                           value={currentArtist}
                           onChange={e => setCurrentArtist(e.target.value)}
                         />
+<<<<<<< HEAD
                       </td>
                       {/* <td>
                         <select
@@ -236,6 +236,33 @@ function Playlist() {
                           <option value="★★★★★">★★★★★</option>
                         </select>
                       </td>
+=======
+                      </td>                                         
+                    <td>
+                      <select
+                      type="text"
+                        value={currentGenre}
+                        onChange={e => setCurrentGenre(e.target.value)}
+                        >
+                        <option value="Rock">Rock</option>
+                        <option value="Reggae">Reggae</option>
+                        <option value="Klassiek">Klassiek</option>
+                        <option value="Hiphop">Hip/Hop/Rap</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                      type="text"
+                        value={currentRating}
+                        onChange={e => setCurrentRating(e.target.value)}>
+                        <option value="★">★</option>
+                        <option value="★★">★★</option>
+                        <option value="★★★">★★★</option>
+                        <option value="★★★★">★★★★</option>
+                        <option value="★★★★★">★★★★★</option>
+                      </select>
+                    </td>
+>>>>>>> 11dddc6e7d020e5a1d77bfb9a1b2598fe7aef205
                       <td>
                         <button onClick={() => cancel(i)}>Cancel</button>
                       </td>

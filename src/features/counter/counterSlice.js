@@ -1,6 +1,7 @@
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { createSlice } from "@reduxjs/toolkit";
 import { current } from "@reduxjs/toolkit";
+
 
 const counterSlice = createSlice({
   name: "counter",
@@ -8,17 +9,10 @@ const counterSlice = createSlice({
     value: 0,
   },
 
-  // Example state
-  // state = {
-  //   slice1: {
-  //     data: [] << access this see blow
-  //   },
-  // }
-  // const data = useSelector(state => state.slice1.data),
-
   reducers: {
     increment: state => {
       state.value += 1;
+      console.log("asdfasd")
       console.log(current(state));
     },
     decrement: state => {

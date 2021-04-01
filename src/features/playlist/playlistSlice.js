@@ -41,8 +41,8 @@ const playlistSlice = createSlice({
         // song.rating = rating;
         // song.editing = false;
       },
-      prepare(title, artist, index) {
-        return { payload: { title, artist, index } };
+      prepare(title, artist, genre, rating, index) {
+        return { payload: { title, artist, genre, rating, index } };
       },
     },
     cancelEdit: (state, action) => {
