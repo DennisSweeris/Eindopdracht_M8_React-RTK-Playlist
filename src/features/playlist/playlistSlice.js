@@ -32,13 +32,14 @@ const playlistSlice = createSlice({
     },
     updateSong: {
       reducer(state, action) {
-        const { title, artist, genre, rating, index } = action.payload;
-        const song = state[index];
-        song.title = title;
-        song.artist = artist;
-        song.genre = genre;
-        song.rating = rating;
-        song.editing = false;
+        console.log(state.artist);
+        // const { title, artist, genre, rating, index } = action.payload;
+        // const song = state[index];
+        // song.title = title;
+        // song.artist = artist;
+        // song.genre = genre;
+        // song.rating = rating;
+        // song.editing = false;
       },
       prepare(title, artist, index) {
         return { payload: { title, artist, index } };

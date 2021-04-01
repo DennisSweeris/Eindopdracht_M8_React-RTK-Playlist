@@ -179,8 +179,8 @@ function Playlist() {
                   <tr>
                     <td onClick={e => edit(e.target, i)}>{song.title}</td>
                     <td onClick={e => edit(e.target, i)}>{song.artist}</td>
-                    <td>{song.genre}</td>
-                    <td>{song.rating}</td>
+                    <td onClick={e => edit(e.target, i)}>{song.genre}</td>
+                    <td onClick={e => edit(e.target, i)}>{song.rating}</td>
 
                     <span className="misc_absolute-delete" onClick={() => remove(i)}>
                       <MdDeleteForever />
@@ -205,30 +205,37 @@ function Playlist() {
                           onChange={e => setCurrentArtist(e.target.value)}
                         />
                       </td>
-                      {/*                   
-                    <td>
-                      <select
-                        className="genre"
-                        value={currentGenre}
-                        onChange={e => setNewGenre(e.target.value)}>
-                        <option value="Rock">Rock</option>
-                        <option value="Reggae">Reggae</option>
-                        <option value="Klassiek">Klassiek</option>
-                        <option value="Hiphop">Hip/Hop/Rap</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select
-                        className="rating"
-                        value={currentRating}
-                        onChange={e => setNewRating(e.target.value)}>
-                        <option value="★">★</option>
-                        <option value="★★">★★</option>
-                        <option value="★★★">★★★</option>
-                        <option value="★★★★">★★★★</option>
-                        <option value="★★★★★">★★★★★</option>
-                      </select>
-                    </td> */}
+                      {/* <td>
+                        <select
+                          className="genre"
+                          value={currentGenre}
+                          onChange={e => setNewGenre(e.target.value)}>
+                          <option value="Rock">Rock</option>
+                          <option value="Reggae">Reggae</option>
+                          <option value="Klassiek">Klassiek</option>
+                          <option value="Hiphop">Hip/Hop/Rap</option>
+                        </select>
+                      </td> */}
+                      <td>
+                        <select className="genre" onChange={e => setCurrentGenre(e.target.value)}>
+                          <option value="Rock">Rock</option>
+                          <option value="Reggae">Reggae</option>
+                          <option value="Klassiek">Klassiek</option>
+                          <option value="Hiphop">Hip/Hop/Rap</option>
+                          <option value="Metal">Metal</option>
+                          <option value="Nederlandstalig">Nederlandstalig</option>
+                        </select>
+                      </td>
+
+                      <td>
+                        <select className="rating" onChange={e => setCurrentRating(e.target.value)}>
+                          <option value="★">★</option>
+                          <option value="★★">★★</option>
+                          <option value="★★★">★★★</option>
+                          <option value="★★★★">★★★★</option>
+                          <option value="★★★★★">★★★★★</option>
+                        </select>
+                      </td>
                       <td>
                         <button onClick={() => cancel(i)}>Cancel</button>
                       </td>
