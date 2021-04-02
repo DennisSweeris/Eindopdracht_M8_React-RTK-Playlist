@@ -6,13 +6,13 @@
 }
 
 body::-webkit-scrollbar {
-  width: 2.25rem;
+  width: 2rem;
 }
 body::-webkit-scrollbar-track {
   background: black;
 }
 body::-webkit-scrollbar-thumb {
-  background: purple;
+  background: red;
 }
 
 h1 {
@@ -22,6 +22,7 @@ h1 {
 
 table {
   border-collapse: collapse;
+  word-break: break-all;
 }
 
 .table-nav {
@@ -38,7 +39,7 @@ table {
   background-color: yellow;
 }
 .table-header th {
-  width: 20%;
+  width: 25%;
   border: 1px solid black;
 }
 .table-header th select {
@@ -46,13 +47,15 @@ table {
   padding: 0.5rem;
   width: 100%;
 }
-.table-header th span {
-  padding: 0 2rem;
-}
 .table-header th div {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
+}
+.table-header th div span {
+  padding: 0 2rem;
 }
 .table-header th div button {
   border: none;
@@ -75,6 +78,7 @@ table {
   table-layout: fixed;
   word-wrap: break-word;
   position: relative;
+  width: 100%;
 }
 .table-list td {
   position: relative;

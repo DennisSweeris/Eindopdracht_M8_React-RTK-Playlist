@@ -49,21 +49,21 @@ const playlistSlice = createSlice({
 
     sortSongsByArtist: (state, action) => {
       action.payload === "ascending"
-        ? state.sort((a, b) => a.artist.localeCompare(b.artist))
-        : state.sort((b, a) => a.artist.localeCompare(b.artist));
+        ? state.songs.sort((a, b) => a.artist.localeCompare(b.artist))
+        : state.songs.sort((b, a) => a.artist.localeCompare(b.artist));
       return state;
     },
 
     sortSongsByGenre: (state, action) => {
       action.payload === "ascending"
-        ? state.sort((a, b) => a.genre.localeCompare(b.genre))
-        : state.sort((b, a) => a.genre.localeCompare(b.genre));
+        ? state.songs.sort((a, b) => a.genre.localeCompare(b.genre))
+        : state.songs.sort((b, a) => a.genre.localeCompare(b.genre));
       return state;
     },
     sortSongsByRating: (state, action) => {
       action.payload === "ascending"
-        ? state.sort((a, b) => a.rating.localeCompare(b.rating))
-        : state.sort((b, a) => a.rating.localeCompare(b.rating));
+        ? state.songs.sort((a, b) => a.rating.localeCompare(b.rating))
+        : state.songs.sort((b, a) => a.rating.localeCompare(b.rating));
       return state;
     },
   },
