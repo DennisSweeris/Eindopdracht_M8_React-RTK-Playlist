@@ -5,18 +5,6 @@ import songs from "../features/playlist/playlistSlice";
 export default configureStore({
   reducer: {
     counter,
-    // sort,
-    songs,
+    playlist: songs,
   },
 });
-
-// export const createAppStore = preloadedState => {
-//   return configureStore({
-//     reducer: {
-//       songs,
-//     },
-//     preloadedState,
-//   });
-// };
-
-// export default createAppStore();

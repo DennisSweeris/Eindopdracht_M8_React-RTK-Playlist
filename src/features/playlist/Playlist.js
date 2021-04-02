@@ -11,27 +11,25 @@ import {
   sortSongsByArtist,
   sortSongsByGenre,
   sortSongsByRating,
-  sortSongsBy,
 } from "./playlistSlice";
 import { MdDeleteForever } from "react-icons/md";
-import { GoArrowDown, GoArrowUp } from "react-icons/go";
 
 // document.addEventListener("click", e => console.log(e.target)); // DOM HELPER
 function Playlist() {
   const dispatch = useDispatch();
-  const { songs } = useSelector(state => state);
+
+  // Songslist Selector
+  const { songs } = useSelector(state => state.playlist);
+
   const [newTitle, setNewTitle] = useState("Unknown");
   const [newArtist, setNewArtist] = useState("Unknown");
-  const [newGenre, setNewGenre] = useState("Rock");
-  const [newRating, setNewRating] = useState("★");
+  const [newGenre, setNewGenre] = useState("");
+  const [newRating, setNewRating] = useState("");
 
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentArtist, setCurrentArtist] = useState("");
   const [currentGenre, setCurrentGenre] = useState("");
   const [currentRating, setCurrentRating] = useState("");
-
-  // const [sortConfig, setSortConfig] = useState(null);
-  // const [sortedField, setSortedField] = useState(null);
 
   const addNewSong = e => {
     e.preventDefault();
@@ -44,22 +42,15 @@ function Playlist() {
       editing: false,
     };
 
-    if (title.value === "" && artist.value === "") {
-      title.className = "table-nav-input";
-      artist.className = "table-nav-input";
-    } else {
-      dispatch(addSong(addedSong));
-      title.value = "";
-      artist.value = "";
-      title.className = "";
-      artist.className = "";
-    }
+    dispatch(addSong(addedSong));
+    title.value = "";
+    artist.value = "";
+    genre.value = "";
+    rating.value = "";
   };
 
   const remove = i => {
     dispatch(removeSong(i));
-    setNewTitle("Unknown");
-    setNewArtist("Unknown");
   };
 
   const edit = (e, i) => {
@@ -103,13 +94,22 @@ function Playlist() {
           <tbody>
             <tr>
               <td>
-                <input type="text" placeholder="Title" onChange={e => setNewTitle(e.target.value)} required/>
+                <input type="text" placeholder="Title" onChange={e => setNewTitle(e.target.value)} required />
               </td>
               <td>
-                <input type="text" placeholder="Artist" onChange={e => setNewArtist(e.target.value)} required/>
+                <input
+                  type="text"
+                  placeholder="Artist"
+                  onChange={e => setNewArtist(e.target.value)}
+                  required
+                />
               </td>
               <td>
-                <select className="genre" onChange={e => setNewGenre(e.target.value)}>
+                <select
+                  defaultValue="GENREDEFAULT"
+                  value="GENRE"
+                  className="genre"
+                  onChange={e => setNewGenre(e.target.value)}>
                   <option value="Rock">Rock</option>
                   <option value="Reggae">Reggae</option>
                   <option value="Klassiek">Klassiek</option>
@@ -138,32 +138,64 @@ function Playlist() {
         <thead>
           <tr>
             <th>
-              <div>             
-                <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
+              <div>
+                <button
+                  name="title"
+                  className="header-btn-left"
+                  onClick={e => sort(e)}
+                  value="ascending"></button>
                 <span>Title</span>
-                <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
+                <button
+                  name="title"
+                  className="header-btn-right"
+                  onClick={e => sort(e)}
+                  value="descending"></button>
               </div>
             </th>
             <th>
               <div>
-                <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
+                <button
+                  name="artist"
+                  className="header-btn-left"
+                  onClick={e => sort(e)}
+                  value="ascending"></button>
                 <span>Artist</span>
-                <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
+                <button
+                  name="artist"
+                  className="header-btn-right"
+                  onClick={e => sort(e)}
+                  value="descending"></button>
               </div>
             </th>
 
             <th>
               <div>
-                <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
+                <button
+                  name="genre"
+                  className="header-btn-left"
+                  onClick={e => sort(e)}
+                  value="ascending"></button>
                 <span>Genre</span>
-                <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
+                <button
+                  name="genre"
+                  className="header-btn-right"
+                  onClick={e => sort(e)}
+                  value="descending"></button>
               </div>
             </th>
             <th>
               <div>
-                <button className="header-btn-left" onClick={e => sort(e)} value="ascending"></button>
+                <button
+                  name="rating"
+                  className="header-btn-left"
+                  onClick={e => sort(e)}
+                  value="ascending"></button>
                 <span>Rating</span>
-                <button className="header-btn-right" onClick={e => sort(e)} value="descending"></button>
+                <button
+                  name="rating"
+                  className="header-btn-right"
+                  onClick={e => sort(e)}
+                  value="descending"></button>
               </div>
             </th>
           </tr>
@@ -203,32 +235,23 @@ function Playlist() {
                           value={currentArtist}
                           onChange={e => setCurrentArtist(e.target.value)}
                         />
-<<<<<<< HEAD
                       </td>
-                      {/* <td>
+                      <td className="edit_table-genre">
                         <select
-                          className="genre"
+                          type="text"
                           value={currentGenre}
-                          onChange={e => setNewGenre(e.target.value)}>
+                          onChange={e => setCurrentGenre(e.target.value)}>
                           <option value="Rock">Rock</option>
                           <option value="Reggae">Reggae</option>
                           <option value="Klassiek">Klassiek</option>
                           <option value="Hiphop">Hip/Hop/Rap</option>
-                        </select>
-                      </td> */}
-                      <td>
-                        <select className="genre" onChange={e => setCurrentGenre(e.target.value)}>
-                          <option value="Rock">Rock</option>
-                          <option value="Reggae">Reggae</option>
-                          <option value="Klassiek">Klassiek</option>
-                          <option value="Hiphop">Hip/Hop/Rap</option>
-                          <option value="Metal">Metal</option>
-                          <option value="Nederlandstalig">Nederlandstalig</option>
                         </select>
                       </td>
-
-                      <td>
-                        <select className="rating" onChange={e => setCurrentRating(e.target.value)}>
+                      <td className="edit_table-rating">
+                        <select
+                          type="text"
+                          value={currentRating}
+                          onChange={e => setCurrentRating(e.target.value)}>
                           <option value="★">★</option>
                           <option value="★★">★★</option>
                           <option value="★★★">★★★</option>
@@ -236,33 +259,6 @@ function Playlist() {
                           <option value="★★★★★">★★★★★</option>
                         </select>
                       </td>
-=======
-                      </td>                                         
-                    <td>
-                      <select
-                      type="text"
-                        value={currentGenre}
-                        onChange={e => setCurrentGenre(e.target.value)}
-                        >
-                        <option value="Rock">Rock</option>
-                        <option value="Reggae">Reggae</option>
-                        <option value="Klassiek">Klassiek</option>
-                        <option value="Hiphop">Hip/Hop/Rap</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select
-                      type="text"
-                        value={currentRating}
-                        onChange={e => setCurrentRating(e.target.value)}>
-                        <option value="★">★</option>
-                        <option value="★★">★★</option>
-                        <option value="★★★">★★★</option>
-                        <option value="★★★★">★★★★</option>
-                        <option value="★★★★★">★★★★★</option>
-                      </select>
-                    </td>
->>>>>>> 11dddc6e7d020e5a1d77bfb9a1b2598fe7aef205
                       <td>
                         <button onClick={() => cancel(i)}>Cancel</button>
                       </td>

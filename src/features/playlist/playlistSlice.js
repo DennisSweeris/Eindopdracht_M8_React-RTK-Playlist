@@ -1,63 +1,49 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { current } from "@reduxjs/toolkit";
-
-const songsArray = [
-  { title: "Imagine", artist: "John Lennon", genre: "Pop", rating: "★★★★", editing: false },
-  { title: "Hellfire", artist: "Jonathan Young", genre: "Metal", rating: "★★★★★", editing: false },
-  {
-    title: "Kleine Oneindigheid",
-    artist: "Marco Borsato",
-    genre: "Nederlandstalig",
-    rating: "★★★",
-    editing: false,
-  },
-  { title: "Sound of Silence", artist: "Disturbed", genre: "Metal", rating: "★★", editing: false },
-];
+import songsArray from "../songsArray";
 
 const playlistSlice = createSlice({
-  name: "songs",
+  name: "playlist",
   initialState: songsArray,
 
   reducers: {
     addSong: (state, action) => {
-      state.push(action.payload);
+      state.songs.push(action.payload);
     },
 
     removeSong: (state, action) => {
-      state.splice(action.payload, 1);
+      state.songs.splice(action.payload, 1);
     },
     editSong: (state, action) => {
-      const song = state[action.payload];
+      const song = state.songs[action.payload];
       song.editing = true;
     },
     updateSong: {
       reducer(state, action) {
         console.log(state.artist);
-        // const { title, artist, genre, rating, index } = action.payload;
-        // const song = state[index];
-        // song.title = title;
-        // song.artist = artist;
-        // song.genre = genre;
-        // song.rating = rating;
-        // song.editing = false;
+        const { title, artist, genre, rating, index } = action.payload;
+        const song = state.songs[index];
+        song.title = title;
+        song.artist = artist;
+        song.genre = genre;
+        song.rating = rating;
+        song.editing = false;
       },
       prepare(title, artist, genre, rating, index) {
         return { payload: { title, artist, genre, rating, index } };
       },
     },
     cancelEdit: (state, action) => {
-      const song = state[action.payload];
+      const song = state.songs[action.payload];
       song.editing = false;
     },
 
-    // console.log(current(state)); // Logs current state - readable
-    // console.log(action); // Logs current action
     // TODO - Figure out how to refactor into a single dynamic function
     sortSongsByTitle: (state, action) => {
       console.log(action);
       action.payload === "ascending"
-        ? state.sort((a, b) => a.title.localeCompare(b.title))
-        : state.sort((b, a) => a.title.localeCompare(b.title));
+        ? state.songs.sort((a, b) => a.title.localeCompare(b.title))
+        : state.songs.sort((b, a) => a.title.localeCompare(b.title));
       return state;
     },
 
@@ -92,6 +78,5 @@ export const {
   sortSongsByArtist,
   sortSongsByGenre,
   sortSongsByRating,
-  sortSongsBy,
 } = playlistSlice.actions;
 export default playlistSlice.reducer;
