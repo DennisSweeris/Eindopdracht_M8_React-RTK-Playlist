@@ -221,7 +221,7 @@ function Playlist() {
                         </select>
                       </td>
                       <td>
-                        <button onClick={() => cancel(i)}>Cancel</button>
+                        <button onClick={() => cancel(i)}>X</button>
                       </td>
                       <td>
                         <button onClick={() => update(i)}>Update</button>
