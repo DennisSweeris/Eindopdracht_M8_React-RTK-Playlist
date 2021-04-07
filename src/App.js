@@ -1,27 +1,25 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import Playlist from "./features/playlist/Playlist";
-import Counter from "./features/counter/Counter";
-import SongForm from "./features/songform/SongForm";
+import About from "./components/_About/About";
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 
 import "./App.css";
 
 function App() {
   return (
-    // <Router>
-    <div className="App">
-      {/* <SongForm /> */}
-      <Playlist />
-      {/* <Link to="/Counter">Counter</Link> */}
+    <Router>
+      <Navbar />
 
-      {/* <Counter /> */}
-    </div>
-    //   <Switch>
-    //     <Route path="/Counter">
-    //       <Counter />
-    //     </Route>
-    //   </Switch>
-    // </Router>
+      <Switch>
+        <Route path="/" component={Playlist} exact />
+        <Route path="/about" component={About} />
+      </Switch>
+
+      <Footer />
+    </Router>
   );
 }
 

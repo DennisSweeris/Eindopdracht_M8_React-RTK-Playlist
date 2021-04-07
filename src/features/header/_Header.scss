@@ -1,0 +1,40 @@
+.table-header {
+  width: 100%;
+  background-color: yellow;
+  & th {
+    width: 25%;
+    border: 1px solid black;
+    & select {
+      background-color: red;
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    & div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+      & span {
+        padding: 0 2rem;
+      }
+      & button {
+        border: none;
+        outline: none;
+      }
+      & > :nth-child(1) {
+        background: none;
+        &::before {
+          content: "\25BC";
+        }
+      }
+      & > :nth-child(3) {
+        background: none;
+        &::after {
+          content: "\25B2";
+        }
+      }
+    }
+  }
+}

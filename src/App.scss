@@ -1,3 +1,8 @@
+@import "./components/Navbar/Navbar";
+@import "./components/Header/Header";
+@import "./components/songform/Songform";
+@import "./components/Footer/Footer";
+
 * {
   padding: 0;
   margin: 0;
@@ -15,65 +20,10 @@ body::-webkit-scrollbar {
   }
 }
 
-h1 {
-  margin-top: 1rem;
-  text-align: center;
-}
-
 table {
   border-collapse: collapse;
   word-break: break-all;
   // margin: 0 10%;
-}
-
-.table-nav {
-  margin: 1rem auto;
-  & input,
-  select {
-    padding: 1rem;
-    font-size: 1rem;
-  }
-}
-
-.table-header {
-  width: 100%;
-  background-color: yellow;
-  & th {
-    width: 25%;
-    border: 1px solid black;
-    & select {
-      background-color: red;
-      padding: 0.5rem;
-      width: 100%;
-    }
-
-    & div {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-around;
-      align-items: center;
-      & span {
-        padding: 0 2rem;
-      }
-      & button {
-        border: none;
-        outline: none;
-      }
-      & > :nth-child(1) {
-        background: none;
-        &::before {
-          content: "\25BC";
-        }
-      }
-      & > :nth-child(3) {
-        background: none;
-        &::after {
-          content: "\25B2";
-        }
-      }
-    }
-  }
 }
 
 .table-list {
@@ -97,35 +47,30 @@ table {
   transform: scale(1.5) translateY(-25%);
 }
 
+.btn-absolute-update {
+  position: absolute;
+  top: 0%;
+  right: 1rem;
+  width: auto;
+  padding: 0;
+  background-color: blue;
+}
+
+.btn-absolute-cancel {
+  position: absolute;
+  bottom: 0%;
+  right: 1rem;
+  width: auto;
+  padding: 0;
+  background-color: blue;
+}
+
 .edit_table-body {
   table-layout: fixed;
   width: 100%;
   & tr {
-    position: relative;
-    // display: flex;
-    & > :nth-child(1),
-    :nth-child(2),
-    :nth-child(3),
-    :nth-child(4) {
-      background: red;
-      width: 25%;
-    }
-    & > :nth-child(5) {
-      position: absolute;
-      bottom: 0%;
-      right: 1rem;
-      width: auto;
-      padding: 0;
-      background-color: blue;
-    }
-    & > :nth-child(6) {
-      position: absolute;
-      top: 0%;
-      right: 1rem;
-      width: auto;
-      padding: 0;
-      background-color: blue;
-    }
+    background: red;
+    width: 25%;
   }
   & button {
     padding: 0.25rem;
@@ -133,7 +78,7 @@ table {
     // width: 25%;
   }
   & td {
-    border: 1px solid red;
+    // border: 1px solid red;
     padding: 1rem;
     width: 25%;
     text-align: center;

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { current } from "@reduxjs/toolkit";
 import songsArray from "../songsArray";
 
 const playlistSlice = createSlice({
@@ -14,19 +13,20 @@ const playlistSlice = createSlice({
     removeSong: (state, action) => {
       state.songs.splice(action.payload, 1);
     },
+
     editSong: (state, action) => {
       const song = state.songs[action.payload];
       song.editing = true;
     },
+
     updateSong: {
       reducer(state, action) {
-        console.log(state.artist);
         const { title, artist, genre, rating, index } = action.payload;
         const song = state.songs[index];
-        song.title = title;
-        song.artist = artist;
-        song.genre = genre;
-        song.rating = rating;
+        song.title = title || song.title;
+        song.artist = artist || song.artist;
+        song.genre = genre || song.genre;
+        song.rating = rating || "★";
         song.editing = false;
       },
       prepare(title, artist, genre, rating, index) {
@@ -39,8 +39,8 @@ const playlistSlice = createSlice({
     },
 
     // TODO - Figure out how to refactor into a single dynamic function
+    // TODO - Make it work from it's own slice
     sortSongsByTitle: (state, action) => {
-      console.log(action);
       action.payload === "ascending"
         ? state.songs.sort((a, b) => a.title.localeCompare(b.title))
         : state.songs.sort((b, a) => a.title.localeCompare(b.title));
@@ -69,7 +69,6 @@ const playlistSlice = createSlice({
   },
 });
 export const {
-  addSong,
   removeSong,
   editSong,
   updateSong,
