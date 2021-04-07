@@ -7,12 +7,10 @@ import {
   sortSongsByRating,
 } from "../playlist/playlistSlice";
 
-import { AiOutlineSortAscending } from "react-icons/ai";
-
 function Header() {
   const dispatch = useDispatch();
 
-  const sort = e => {
+  const sort = (e) => {
     if (e.target.parentNode.innerText === "Title") {
       dispatch(sortSongsByTitle(e.target.value));
     }
@@ -37,14 +35,16 @@ function Header() {
                 <button
                   name="title"
                   className="header-btn-left"
-                  onClick={e => sort(e)}
-                  value="ascending"></button>
+                  onClick={(e) => sort(e)}
+                  value="ascending"
+                ></button>
                 <span>Title</span>
                 <button
                   name="title"
                   className="header-btn-right"
-                  onClick={e => sort(e)}
-                  value="descending"></button>
+                  onClick={(e) => sort(e)}
+                  value="descending"
+                ></button>
               </div>
             </th>
             <th>
@@ -52,14 +52,16 @@ function Header() {
                 <button
                   name="artist"
                   className="header-btn-left"
-                  onClick={e => sort(e)}
-                  value="ascending"></button>
+                  onClick={(e) => sort(e)}
+                  value="ascending"
+                ></button>
                 <span>Artist</span>
                 <button
                   name="artist"
                   className="header-btn-right"
-                  onClick={e => sort(e)}
-                  value="descending"></button>
+                  onClick={(e) => sort(e)}
+                  value="descending"
+                ></button>
               </div>
             </th>
 
@@ -68,14 +70,16 @@ function Header() {
                 <button
                   name="genre"
                   className="header-btn-left"
-                  onClick={e => sort(e)}
-                  value="ascending"></button>
+                  onClick={(e) => sort(e)}
+                  value="ascending"
+                ></button>
                 <span>Genre</span>
                 <button
                   name="genre"
                   className="header-btn-right"
-                  onClick={e => sort(e)}
-                  value="descending"></button>
+                  onClick={(e) => sort(e)}
+                  value="descending"
+                ></button>
               </div>
             </th>
             <th>
@@ -83,14 +87,16 @@ function Header() {
                 <button
                   name="rating"
                   className="header-btn-left"
-                  onClick={e => sort(e)}
-                  value="ascending"></button>
+                  onClick={(e) => sort(e)}
+                  value="ascending"
+                ></button>
                 <span>Rating</span>
                 <button
                   name="rating"
                   className="header-btn-right"
-                  onClick={e => sort(e)}
-                  value="descending"></button>
+                  onClick={(e) => sort(e)}
+                  value="descending"
+                ></button>
               </div>
             </th>
           </tr>

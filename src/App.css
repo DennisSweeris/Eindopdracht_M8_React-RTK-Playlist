@@ -14,26 +14,28 @@ nav {
 }
 nav ul {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-content: center;
-  width: 33%;
+  width: 100%;
   padding: 0.65rem;
 }
 nav ul li {
   list-style: none;
 }
 nav ul a {
-  border: 1px solid yellow;
+  font-size: 2rem;
   color: white;
-  padding: 1rem;
+  margin: 0 2rem;
   text-decoration: none;
 }
 
 .nav-title {
-  margin: 0 1rem;
+  font-size: 2rem;
+  margin: 0 2rem;
 }
 
 .nav-icon {
+  align-self: center;
   -webkit-animation: nav-icon-rotate 4s linear infinite;
           animation: nav-icon-rotate 4s linear infinite;
 }
@@ -77,17 +79,15 @@ nav ul a {
 }
 
 .table-header {
-  width: 100%;
-  background-color: yellow;
+  width: 80%;
+  margin: 0 10%;
+  color: white;
+  background: black;
+  background: linear-gradient(90deg, #6e0202 0%, black 50%, #6e0202 100%);
 }
 .table-header th {
   width: 25%;
-  border: 1px solid black;
-}
-.table-header th select {
-  background-color: red;
-  padding: 0.5rem;
-  width: 100%;
+  border: 1px solid red;
 }
 .table-header th div {
   display: flex;
@@ -95,9 +95,8 @@ nav ul a {
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
-}
-.table-header th div span {
-  padding: 0 2rem;
+  padding: 1rem;
+  position: sticky;
 }
 .table-header th div button {
   border: none;
@@ -108,22 +107,25 @@ nav ul a {
 }
 .table-header th div > :nth-child(1)::before {
   content: "▼";
+  color: white;
 }
 .table-header th div > :nth-child(3) {
   background: none;
 }
 .table-header th div > :nth-child(3)::after {
   content: "▲";
+  color: white;
 }
 
 .table-list {
   table-layout: fixed;
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin: 0 10%;
 }
 .table-list td {
   position: relative;
-  border: 1px solid red;
+  border: 1px solid black;
   padding: 1rem;
   width: 20%;
   text-align: center;

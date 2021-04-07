@@ -1,14 +1,18 @@
 .table-header {
-  width: 100%;
-  background-color: yellow;
+  width: 80%;
+  margin: 0 10%;
+  color: white;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(110, 2, 2, 1) 0%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(110, 2, 2, 1) 100%
+  );
+
   & th {
     width: 25%;
-    border: 1px solid black;
-    & select {
-      background-color: red;
-      padding: 0.5rem;
-      width: 100%;
-    }
+    border: 1px solid red;
 
     & div {
       display: flex;
@@ -16,9 +20,8 @@
       flex-wrap: nowrap;
       justify-content: space-around;
       align-items: center;
-      & span {
-        padding: 0 2rem;
-      }
+      padding: 1rem;
+      position: sticky;
       & button {
         border: none;
         outline: none;
@@ -27,12 +30,14 @@
         background: none;
         &::before {
           content: "\25BC";
+          color: white;
         }
       }
       & > :nth-child(3) {
         background: none;
         &::after {
           content: "\25B2";
+          color: white;
         }
       }
     }
