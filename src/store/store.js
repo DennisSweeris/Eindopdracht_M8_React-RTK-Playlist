@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import songs from "../features/playlist/playlistSlice";
+import songs from "../components/_Playlist/features/playlist/playlistSlice";
 
 export default configureStore({
   reducer: {

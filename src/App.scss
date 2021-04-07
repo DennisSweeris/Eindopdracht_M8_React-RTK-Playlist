@@ -1,7 +1,8 @@
-@import "./components/Navbar/Navbar";
-@import "./components/Header/Header";
-@import "./components/songform/Songform";
-@import "./components/Footer/Footer";
+@import "./components/navbar/Navbar";
+@import "./components/_Playlist/features/songform/SongForm";
+@import "./components/_Playlist/features/header/Header";
+@import "./components/_Playlist/features/playlist/Playlist";
+@import "./components/footer/Footer";
 
 * {
   padding: 0;
@@ -24,64 +25,4 @@ table {
   border-collapse: collapse;
   word-break: break-all;
   // margin: 0 10%;
-}
-
-.table-list {
-  table-layout: fixed;
-  position: relative;
-  width: 100%;
-  & td {
-    position: relative;
-    border: 1px solid red;
-    padding: 1rem;
-    width: 20%;
-    text-align: center;
-    vertical-align: center;
-  }
-}
-
-.misc_absolute-delete {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: scale(1.5) translateY(-25%);
-}
-
-.btn-absolute-update {
-  position: absolute;
-  top: 0%;
-  right: 1rem;
-  width: auto;
-  padding: 0;
-  background-color: blue;
-}
-
-.btn-absolute-cancel {
-  position: absolute;
-  bottom: 0%;
-  right: 1rem;
-  width: auto;
-  padding: 0;
-  background-color: blue;
-}
-
-.edit_table-body {
-  table-layout: fixed;
-  width: 100%;
-  & tr {
-    background: red;
-    width: 25%;
-  }
-  & button {
-    padding: 0.25rem;
-    font-size: 0.75rem;
-    // width: 25%;
-  }
-  & td {
-    // border: 1px solid red;
-    padding: 1rem;
-    width: 25%;
-    text-align: center;
-    vertical-align: center;
-  }
 }

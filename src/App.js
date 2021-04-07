@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Playlist from "./features/playlist/Playlist";
+import Playlist from "./components/_Playlist/features/playlist/Playlist";
 import About from "./components/_About/About";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
