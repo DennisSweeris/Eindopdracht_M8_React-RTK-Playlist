@@ -3,6 +3,6 @@ import songs from "../components/_Playlist/features/playlist/playlistSlice";
 
 export default configureStore({
   reducer: {
-    playlist: songs,
+    songlist: songs,
   },
 });

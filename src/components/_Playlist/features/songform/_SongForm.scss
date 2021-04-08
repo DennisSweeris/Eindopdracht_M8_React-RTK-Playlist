@@ -1,15 +1,14 @@
-// .form-container {
-//   display: flex;
-//   justify-content: center;
-//   width: 100%;
-//   margin: 0 10%;
-// }
-
 .table-nav {
   margin: 1rem auto;
-  & input,
+
+  input,
   select {
     padding: 1rem;
     font-size: 1rem;
   }
+}
+
+.rating,
+.submit {
+  cursor: pointer;
 }

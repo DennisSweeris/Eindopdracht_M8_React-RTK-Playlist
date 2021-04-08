@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import songsArray from "../songsArray";
 
 const playlistSlice = createSlice({
-  name: "playlist",
+  name: "songlist",
   initialState: songsArray,
 
   reducers: {
@@ -69,6 +69,7 @@ const playlistSlice = createSlice({
   },
 });
 export const {
+  addSong,
   removeSong,
   editSong,
   updateSong,

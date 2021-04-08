@@ -2,6 +2,7 @@
 @import "./components/_Playlist/features/songform/SongForm";
 @import "./components/_Playlist/features/header/Header";
 @import "./components/_Playlist/features/playlist/Playlist";
+@import "./components/_About/_About";
 @import "./components/footer/Footer";
 
 * {
@@ -10,19 +11,30 @@
   box-sizing: border-box;
 }
 
+body {
+  width: fit-content;
+  background: rgb(110, 2, 2);
+  background: linear-gradient(90deg, rgba(110, 2, 2, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(110, 2, 2, 1) 100%);
+  color: rgb(255, 255, 255);
+}
+
 // Scrollbar
 body::-webkit-scrollbar {
-  width: 2rem;
+  width: 1rem;
   &-track {
-    background: rgba(0, 0, 0, 1);
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgba(110, 2, 2, 1) 0%, rgba(0, 0, 0, 1) 100%);
   }
   &-thumb {
-    background: rgba(255, 0, 0, 1);
+    background: rgba(110, 2, 2, 1);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(110, 2, 2, 1) 25% 75%, rgba(0, 0, 0, 0) 100%);
+    border-radius: 50%;
   }
 }
 
 table {
   border-collapse: collapse;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(89, 2, 2, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(89, 2, 2, 1) 100%);
   word-break: break-all;
-  // margin: 0 10%;
 }

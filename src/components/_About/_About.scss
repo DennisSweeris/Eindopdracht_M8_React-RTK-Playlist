@@ -1,0 +1,35 @@
+.about-container {
+  margin: 0 auto;
+  width: 80%;
+}
+
+header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 100%;
+  q {
+    width: 25%;
+    text-align: center;
+  }
+  .quote-left {
+    transform: rotate(-5deg);
+  }
+  .quote-right {
+    transform: rotate(5deg);
+  }
+  img {
+    max-width: 20%;
+    max-height: auto;
+    clip-path: polygon(0 10%, 100% 10%, 100% 90%, 90% 90%, 90% 100%, 70% 90%, 0 90%);
+  }
+}
+
+.about-text {
+  margin: 0 auto;
+  min-width: 50%;
+  max-width: 75%;
+  p {
+    margin: 1rem;
+  }
+}

@@ -16,7 +16,7 @@ function Playlist() {
   const dispatch = useDispatch();
 
   // Songslist Selector
-  const { songs } = useSelector(state => state.playlist);
+  const { songs } = useSelector(state => state.songlist);
 
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentArtist, setCurrentArtist] = useState("");
