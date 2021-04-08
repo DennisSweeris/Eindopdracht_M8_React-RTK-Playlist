@@ -167,18 +167,22 @@ nav ul li a:hover {
   position: absolute;
   top: 0%;
   right: 1rem;
-  width: auto;
+  width: 10%;
   padding: 0;
-  background-color: blue;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-absolute-cancel {
   position: absolute;
   bottom: 0%;
   right: 1rem;
-  width: auto;
+  width: 10%;
   padding: 0;
-  background-color: blue;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .edit_table-body {
@@ -186,7 +190,8 @@ nav ul li a:hover {
   width: 100%;
 }
 .edit_table-body tr {
-  background: red;
+  background: black;
+  background: linear-gradient(90deg, #590202 0%, black 50%, #590202 100%);
   width: 25%;
 }
 .edit_table-body button {

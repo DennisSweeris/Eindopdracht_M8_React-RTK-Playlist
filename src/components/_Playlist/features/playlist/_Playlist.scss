@@ -33,25 +33,30 @@
   position: absolute;
   top: 0%;
   right: 1rem;
-  width: auto;
+  width: 10%;
   padding: 0;
-  background-color: blue;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-absolute-cancel {
   position: absolute;
   bottom: 0%;
   right: 1rem;
-  width: auto;
+  width: 10%;
   padding: 0;
-  background-color: blue;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .edit_table-body {
   table-layout: fixed;
   width: 100%;
   & tr {
-    background: red;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgba(89, 2, 2, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(89, 2, 2, 1) 100%);
     width: 25%;
   }
   & button {
