@@ -1,29 +1,9 @@
 import { React, Fragment } from "react";
 import { useDispatch } from "react-redux";
-import {
-  sortSongsByTitle,
-  sortSongsByArtist,
-  sortSongsByGenre,
-  sortSongsByRating,
-} from "../playlist/playlistSlice";
+import { sortSongsAscending, sortSongsDescending } from "../playlist/playlistSlice";
 
 function Header() {
   const dispatch = useDispatch();
-
-  const sort = (e) => {
-    if (e.target.parentNode.innerText === "Title") {
-      dispatch(sortSongsByTitle(e.target.value));
-    }
-    if (e.target.parentNode.innerText === "Artist") {
-      dispatch(sortSongsByArtist(e.target.value));
-    }
-    if (e.target.parentNode.innerText === "Genre") {
-      dispatch(sortSongsByGenre(e.target.value));
-    }
-    if (e.target.parentNode.innerText === "Rating") {
-      dispatch(sortSongsByRating(e.target.value));
-    }
-  };
 
   return (
     <Fragment>
@@ -35,16 +15,14 @@ function Header() {
                 <button
                   name="title"
                   className="header-btn-left"
-                  onClick={(e) => sort(e)}
-                  value="ascending"
-                ></button>
+                  onClick={e => dispatch(sortSongsAscending(e.target.value))}
+                  value="title"></button>
                 <span>Title</span>
                 <button
                   name="title"
                   className="header-btn-right"
-                  onClick={(e) => sort(e)}
-                  value="descending"
-                ></button>
+                  onClick={e => dispatch(sortSongsDescending(e.target.value))}
+                  value="title"></button>
               </div>
             </th>
             <th>
@@ -52,16 +30,14 @@ function Header() {
                 <button
                   name="artist"
                   className="header-btn-left"
-                  onClick={(e) => sort(e)}
-                  value="ascending"
-                ></button>
+                  onClick={e => dispatch(sortSongsAscending(e.target.value))}
+                  value="artist"></button>
                 <span>Artist</span>
                 <button
                   name="artist"
                   className="header-btn-right"
-                  onClick={(e) => sort(e)}
-                  value="descending"
-                ></button>
+                  onClick={e => dispatch(sortSongsDescending(e.target.value))}
+                  value="artist"></button>
               </div>
             </th>
 
@@ -70,16 +46,14 @@ function Header() {
                 <button
                   name="genre"
                   className="header-btn-left"
-                  onClick={(e) => sort(e)}
-                  value="ascending"
-                ></button>
+                  onClick={e => dispatch(sortSongsAscending(e.target.value))}
+                  value="genre"></button>
                 <span>Genre</span>
                 <button
                   name="genre"
                   className="header-btn-right"
-                  onClick={(e) => sort(e)}
-                  value="descending"
-                ></button>
+                  onClick={e => dispatch(sortSongsDescending(e.target.value))}
+                  value="genre"></button>
               </div>
             </th>
             <th>
@@ -87,16 +61,14 @@ function Header() {
                 <button
                   name="rating"
                   className="header-btn-left"
-                  onClick={(e) => sort(e)}
-                  value="ascending"
-                ></button>
+                  onClick={e => dispatch(sortSongsAscending(e.target.value))}
+                  value="rating"></button>
                 <span>Rating</span>
                 <button
                   name="rating"
                   className="header-btn-right"
-                  onClick={(e) => sort(e)}
-                  value="descending"
-                ></button>
+                  onClick={e => dispatch(sortSongsDescending(e.target.value))}
+                  value="rating"></button>
               </div>
             </th>
           </tr>

@@ -38,33 +38,14 @@ const playlistSlice = createSlice({
       song.editing = false;
     },
 
-    // TODO - Figure out how to refactor into a single dynamic function
-    // TODO - Make it work from it's own slice
-    sortSongsByTitle: (state, action) => {
-      action.payload === "ascending"
-        ? state.songs.sort((a, b) => a.title.localeCompare(b.title))
-        : state.songs.sort((b, a) => a.title.localeCompare(b.title));
-      return state;
+    sortSongsAscending: (state, action) => {
+      const sortBy = action.payload;
+      state.songs.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
     },
 
-    sortSongsByArtist: (state, action) => {
-      action.payload === "ascending"
-        ? state.songs.sort((a, b) => a.artist.localeCompare(b.artist))
-        : state.songs.sort((b, a) => a.artist.localeCompare(b.artist));
-      return state;
-    },
-
-    sortSongsByGenre: (state, action) => {
-      action.payload === "ascending"
-        ? state.songs.sort((a, b) => a.genre.localeCompare(b.genre))
-        : state.songs.sort((b, a) => a.genre.localeCompare(b.genre));
-      return state;
-    },
-    sortSongsByRating: (state, action) => {
-      action.payload === "ascending"
-        ? state.songs.sort((a, b) => a.rating.localeCompare(b.rating))
-        : state.songs.sort((b, a) => a.rating.localeCompare(b.rating));
-      return state;
+    sortSongsDescending: (state, action) => {
+      const sortBy = action.payload;
+      state.songs.sort((b, a) => a[sortBy].localeCompare(b[sortBy]));
     },
   },
 });
@@ -78,5 +59,7 @@ export const {
   sortSongsByArtist,
   sortSongsByGenre,
   sortSongsByRating,
+  sortSongsAscending,
+  sortSongsDescending,
 } = playlistSlice.actions;
 export default playlistSlice.reducer;
