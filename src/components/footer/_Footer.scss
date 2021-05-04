@@ -9,16 +9,30 @@ footer {
   height: 3rem;
   background: rgb(0, 0, 0);
   background: linear-gradient(90deg, rgba(110, 2, 2, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(110, 2, 2, 1) 100%);
-  z-index: 10;
-
-  li {
+  z-index: 100;
+  padding: 0.5rem;
+  ul {
+    display: flex;
     list-style: none;
+    flex-grow: 1;
+  }
+  li {
+    transform: translateX(-100%);
   }
   i {
-    padding: 2rem;
+    margin: 0 1rem;
+    transition: transform 300ms ease-in;
     transform: scale(1.5);
+    color: #fff;
     &:hover {
-      filter: invert(1);
+      transform: scale(2);
     }
   }
+}
+
+.footer-info {
+  display: flex;
+  width: 50%;
+  align-self: flex-end;
+  justify-self: flex-start;
 }

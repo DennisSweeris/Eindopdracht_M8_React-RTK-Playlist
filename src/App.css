@@ -253,17 +253,32 @@ footer {
   height: 3rem;
   background: black;
   background: linear-gradient(90deg, #6e0202 0%, black 50%, #6e0202 100%);
-  z-index: 10;
+  z-index: 100;
+  padding: 0.5rem;
+}
+footer ul {
+  display: flex;
+  list-style: none;
+  flex-grow: 1;
 }
 footer li {
-  list-style: none;
+  transform: translateX(-100%);
 }
 footer i {
-  padding: 2rem;
+  margin: 0 1rem;
+  transition: transform 300ms ease-in;
   transform: scale(1.5);
+  color: #fff;
 }
 footer i:hover {
-  filter: invert(1);
+  transform: scale(2);
+}
+
+.footer-info {
+  display: flex;
+  width: 50%;
+  align-self: flex-end;
+  justify-self: flex-start;
 }
 
 * {
