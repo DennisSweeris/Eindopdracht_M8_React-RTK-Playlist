@@ -9,7 +9,7 @@ function About() {
           <q className="quote-left">
             Je bepaalt zelf je tempo en bent verantwoordelijk voor je eigen leerproces.
           </q>
-          <img src={Picture} alt="Picture of myself"></img>
+          <img src={Picture} alt="Myself"></img>
           <q className="quote-right">Leer wat je leren kan, practice makes perfect.</q>
         </header>
 
